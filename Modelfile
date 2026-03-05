@@ -2,6 +2,12 @@
 # Duane Rinehart
 # Purpose: Optimize Ollama model temperature & context window for local coding
 
+# HOW TO: 
+# 1) cd to directory where Modelfile is located
+# 2) ollama create qwen3-coder-precise -f Modelfile
+# 3) Verify parameters of new model: ollama show --parameters qwen3-coder-precise
+
+# Base model
 FROM qwen3-coder:30b
 
 # Set temperature to 0.0 for maximum precision
