@@ -1,8 +1,9 @@
-# 17-MAR-2026
+# 18-MAR-2026
 # Duane Rinehart
 # Purpose: Capture critical compute info for host
 
 Write-Host "`e[32mDATE:`e[0m `t`t`t$(Get-Date -Format 'yyyy-MM-dd')"
+Write-Host "`e[32mUPTIME:`e[0m `t`t$(Get-Uptime | Select-Object Days, Minutes)"
 Write-Host "`e[32mHOST:`e[0m `t`t`t$env:COMPUTERNAME"
 Write-Host "`e[32mRAM:`e[0m `t`t`t$(Get-CimInstance -Class Win32_ComputerSystem | ForEach-Object { [Math]::Round($_.TotalPhysicalMemory / 1GB) }) GB"
 Write-Host "`e[32mCPU Cores:`e[0m `t`t$(Get-CimInstance -Class Win32_Processor | Select-Object -ExpandProperty NumberOfCores)"
