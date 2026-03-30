@@ -1,0 +1,36 @@
+# 30-MAR-2026
+# Duane Rinehart
+# Purpose: Optimize Ollama model temperature & context window for local coding
+# Note: this model used for planning [in Cline]
+
+# HOW TO: 
+# 1) cd to directory where Modelfile is located
+# 2) ollama create cline-planner -f .\Modelfile_plan -f Modelfile_plan
+# 3) Verify parameters of new model: ollama show --parameters cline-planner
+
+# Base model
+FROM llama3.2
+
+# Set temperature to 0.0 for maximum precision; higher = more creative
+PARAMETER temperature 0.1
+
+# CPU cores - set to 'performance' core count
+PARAMETER num_thread 8
+
+# Set a large context window for Cline to see your whole project (should correspond to max RAM on system to avoid memory swapping)
+PARAMETER num_ctx 65536
+
+# Top P (Nucleus Sampling): Limits the token pool to a cumulative probability. 
+# Lowering this from the default (0.9) to 0.8 ensures the model only considers the most logical next steps.
+PARAMETER top_p 0.8
+
+# Top K: Hard caps the token selection to the 20 most likely tokens (default is 40). 
+# This prevents the model from "derailing" or hallucinating during long planning phases.
+PARAMETER top_k 20
+
+# Min P: Filters out extreme long-tail (nonsense) tokens to keep the plan focused.
+PARAMETER min_p 0.05
+
+# Repeat Penalty: Prevents the model from getting stuck in infinite loops 
+# when generating repetitive file structures, boilerplate, or long lists.
+PARAMETER repeat_penalty 1.15

@@ -1,6 +1,7 @@
-# 5-MAR-2026
+# 30-MAR-2026
 # Duane Rinehart
 # Purpose: Optimize Ollama model temperature & context window for local coding
+# Note: this model used for acting [in Cline]
 
 # HOW TO: 
 # 1) cd to directory where Modelfile is located
